@@ -1,41 +1,57 @@
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+event.respondWith(handleRequest(event.request))
 })
 
 async function handleRequest(request) {
-  return new Response(`
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>🦩 HBD Maedeh! 🦩</title>
-      <style>
-        /* Add your CSS styles here */
-      </style>
-    </head>
-    <body>
-      <div class="card">
-        <h1>HBD dear Maedeh!</h1>
-        <div class="flamingo">
-          <div class="flamingo-body"></div>
-          <div class="flamingo-neck"></div>
-          <div class="flamingo-head"></div>
-          <div class="flamingo-beak"></div>
-          <div class="flamingo-leg"></div>
-          <div class="flamingo-leg"></div>
-        </div>
-        <p>Wishing you a wonderful day and a year filled with happiness!</p>
-      </div>
-      
-      <script>
-        // Add any additional JavaScript functionality here
-      </script>
-    </body>
-    </html>
-  `, {
-    headers: {
-      'content-type': 'text/html;charset=UTF-8',
-    },
-  })
+// Get today's date
+const today = new Date();
+const month = today.getMonth() + 1; // January is 0!
+const day = today.getDate();
+
+// Check if it's May 26th
+if (month === 5 && day === 26) {
+// If it is May 26th, return the birthday message
+return new Response(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> HBD dude! </title>
+<style>
+/* Add your CSS styles here */
+</style>
+</head>
+<body>
+<div class="card">
+<h1>HBD dear Maedeh!</h1>
+<div class="flamingo">
+<div class="flamingo-body"></div>
+<div class="flamingo-neck"></div>
+<div class="flamingo-head"></div>
+<div class="flamingo-beak"></div>
+<div class="flamingo-leg"></div>
+<div class="flamingo-leg"></div>
+</div>
+<p>Wishing you a wonderful day and a year filled with happiness!</p>
+</div>
+
+<script>
+// Add any additional JavaScript functionality here
+</script>
+</body>
+</html>
+`, {
+headers: {
+'content-type': 'text/html;charset=UTF-8',
+},
+})
+} else {
+// If it's not May 26th, return a message saying no upcoming birthday
+return new Response('We have no upcoming birthday any time soon.', {
+headers: {
+'content-type': 'text/plain;charset=UTF-8',
+},
+});
+}
 }
